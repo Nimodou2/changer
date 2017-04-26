@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/back"
+            style="@style/bar_left"
+            android:text="返回"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="预约信息"/>
+        <TextView
+            android:id="@+id/tv_files"
+            style="@style/bar_right" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_yuyue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+        <include
+            android:id="@+id/in_no_datas"
+            android:visibility="gone"
+            layout="@layout/incloud_no_datas"></include>
+
+        <include
+            android:id="@+id/in_loading_error"
+            android:visibility="gone"
+            layout="@layout/incloud_loading_error"></include>
+
+    </FrameLayout>
+</LinearLayout>

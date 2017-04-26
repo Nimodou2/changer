@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/weixin_lianxiren_gray"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@id/ll_head"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/back"
+            style="@style/bar_left"
+            android:text="返回"/>
+
+        <TextView
+            android:id="@+id/people_name"
+            style="@style/bar_center"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/tv_see"
+            android:enabled="false"
+            android:visibility="invisible"
+            style="@style/bar_right"
+            android:text="详情"/>
+    </LinearLayout>
+    <ListView
+
+        android:id="@+id/lv_people_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+
+</LinearLayout>

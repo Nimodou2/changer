@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/weixin_lianxiren_gray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/main_color">
+
+        <TextView
+            android:id="@+id/tv_back"
+            style="@style/bar_left"
+            android:text="返回" />
+
+        <TextView
+            style="@style/bar_center"
+            android:text="项目计划" />
+
+        <TextView style="@style/bar_right" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_all_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_customer_plan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/weixin_lianxiren_gray"
+            android:gravity="left|center"
+            android:paddingLeft="15dp"
+            android:text="客户计划"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_add_item"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:paddingLeft="15dp"
+                android:text="增加项目"
+                android:textColor="@color/radar_chart_text"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/add" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/planItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"></ListView>
+    </LinearLayout>
+        <include
+            android:id="@+id/in_no_datas"
+            android:visibility="gone"
+            layout="@layout/incloud_no_datas"></include>
+
+        <include
+            android:id="@+id/in_loading_error"
+            android:visibility="gone"
+            layout="@layout/incloud_loading_error"></include>
+
+    </FrameLayout>
+
+</LinearLayout>
