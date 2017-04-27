@@ -34,7 +34,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.maibo.lvyongsheng.xianhui.App;
-import com.maibo.lvyongsheng.xianhui.ProjectMessageActivity;
+import com.maibo.lvyongsheng.xianhui.OrderActivity;
 import com.maibo.lvyongsheng.xianhui.R;
 import com.maibo.lvyongsheng.xianhui.adapter.MyGridViewAdapter;
 import com.maibo.lvyongsheng.xianhui.adapter.ProjectAdapter;
@@ -106,10 +106,16 @@ public class ProjectFragment extends Fragment implements WorkRefreshListView.OnR
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             int project_id=list1.get(i-1).getProject_id();
                             String project_name=list1.get(i-1).getProject_name();
-                            Intent intent=new Intent(getActivity(),ProjectMessageActivity.class);
+                          /*  Intent intent=new Intent(getActivity(),ProjectMessageActivity.class);
                             intent.putExtra("project_id",project_id);
                             intent.putExtra("projectName",project_name);
                             intent.putExtra("type",1);//项目的type为1
+                            startActivity(intent);*/
+                            Intent intent=new Intent(getActivity(),OrderActivity.class);
+                            intent.putExtra("project_id",project_id);
+                            intent.putExtra("projectName",project_name);
+                            intent.putExtra("type",1);//项目的type为1
+                            intent.putExtra("tag",1);//项目的tag为1
                             startActivity(intent);
                         }
                     });

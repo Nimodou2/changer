@@ -26,7 +26,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.maibo.lvyongsheng.xianhui.AllMessageActivity;
 import com.maibo.lvyongsheng.xianhui.App;
 import com.maibo.lvyongsheng.xianhui.OrderActivity;
 import com.maibo.lvyongsheng.xianhui.R;
@@ -101,11 +100,19 @@ public class ColleagueFragment extends Fragment implements WorkRefreshListView.O
                        @Override
                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                            employee=list1.get(i-1);
-                           Intent intent = new Intent(getActivity(), AllMessageActivity.class);
+                           /*Intent intent = new Intent(getActivity(), AllMessageActivity.class);
                            Bundle bundle=new Bundle();
                            bundle.putSerializable("Employee",employee);
                            intent.putExtras(bundle);
                            intent.putExtra("tag",1);
+                           startActivity(intent);*/
+                           Intent intent = new Intent(getActivity(), OrderActivity.class);
+                           Bundle bundle=new Bundle();
+                           bundle.putSerializable("collName",employee.getDisplay_name());
+                           intent.putExtras(bundle);
+                           intent.putExtra("tag",2);
+                           intent.putExtra("user_id", employee.getUser_id());
+                           intent.putExtra("employee",employee);
                            startActivity(intent);
                        }
                    });

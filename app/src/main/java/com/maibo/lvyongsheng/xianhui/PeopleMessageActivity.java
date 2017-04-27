@@ -198,6 +198,7 @@ public class PeopleMessageActivity extends BaseActivity implements View.OnClickL
         ll_order = (LinearLayout) findViewById(R.id.ll_order);
         back = (TextView) findViewById(R.id.back);
         tv_files = (TextView) findViewById(R.id.tv_files);
+        tv_files.setText("");
         if(tag!=-1){
             tv_files.setVisibility(View.INVISIBLE);
         }
@@ -366,10 +367,10 @@ public class PeopleMessageActivity extends BaseActivity implements View.OnClickL
                 if(tag==-1){
                     Intent intent5 = new Intent(this, OrderActivity.class);
                     if(list1!=null){
-                        intent5.putExtra("customer_name", list1.get(0).getFullname());
+                      /*  intent5.putExtra("customer_name", list1.get(0).getFullname());
                         intent5.putExtra("customer_id", customer_id);
                         intent5.putExtra("tag", 3);
-                        startActivity(intent5);
+                        startActivity(intent5);*/
                     }
                 }
                 break;

@@ -33,6 +33,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.maibo.lvyongsheng.xianhui.adapter.OrderNewAdapter;
 import com.maibo.lvyongsheng.xianhui.constants.Constants;
+import com.maibo.lvyongsheng.xianhui.entity.Employee;
 import com.maibo.lvyongsheng.xianhui.entity.EventDatas;
 import com.maibo.lvyongsheng.xianhui.entity.Order;
 import com.maibo.lvyongsheng.xianhui.implement.CloseAllActivity;
@@ -55,7 +56,9 @@ import static com.zhy.http.okhttp.OkHttpUtils.post;
  * Created by LYS on 2016/10/9.
  */
 public class OrderActivity extends BaseActivity implements View.OnClickListener {
+    private Employee employee;
     private android.support.v7.app.AlertDialog alertDialog;
+    private String projectName;
     private int isAllMCom;
     private static final String TAG="OrderActivity";
     ListView lv_order;
@@ -346,6 +349,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         Intent intent = getIntent();
+        employee= (Employee) intent.getSerializableExtra("employee");
         isAllMCom=intent.getIntExtra("allmessage",-1);
         initView();
         Bundle bundle = intent.getExtras();
@@ -431,18 +435,30 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         cus_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(customer_id!=-1) {
+
                     Log.e(TAG,"这个是tag"+tag);
                     if(tag==3){
-                        return;
-                    }else {
-                        Intent intent = new Intent(OrderActivity.this, PeopleMessageActivity.class);
+                        Intent intent = new Intent(OrderActivity.this,PeopleMessageActivity.class);
                         intent.putExtra("customer_id", customer_id);
-                        intent.putExtra("tag",tag);
                         startActivity(intent);
+                    }else {
+                        if(tag==1){
+                            Intent intent = new Intent(OrderActivity.this, ProjectMessageActivity.class);
+                            intent.putExtra("project_id",project_id);
+                            intent.putExtra("projectName",projectName);
+                            intent.putExtra("type",1);//项目的type为1
+                            startActivity(intent);
+                        }
+                        if(tag==2){
+                            Intent intent = new Intent(OrderActivity.this, AllMessageActivity.class);
+                            Bundle bundle=new Bundle();
+                            bundle.putSerializable("Employee",employee);
+                            intent.putExtras(bundle);
+                            intent.putExtra("tag",1);
+                            startActivity(intent);
+                        }
                     }
                 }
-            }
         });
     }
 
@@ -466,14 +482,16 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
             showShortDialog();
             getProjectOrder(project_id);
             cus_name.setText(intent.getStringExtra("projectName"));
+            projectName=intent.getStringExtra("projectName");
         } else if (tag == 2) {
             showShortDialog();
             getColleagueOrder(user_id);
             cus_name.setText(intent.getStringExtra("collName"));
         } else if (tag == 3) {
             showShortDialog();
+            cus_name.setText("加载中");
             getCustomerOrder(customer_id, date);
-            cus_name.setText(intent.getStringExtra("customer_name"));
+            //cus_name.setText(intent.getStringExtra("customer_name"));
         } else if (tag == 4) {
             getCustomerScheduleList(intent.getStringExtra("date"), customer_id, "undone");
             if (!TextUtils.isEmpty(intent.getStringExtra("customer_name")))
@@ -718,6 +736,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                                         customer_id = jo.get("customer_id").getAsInt();
                                     if (!jo.get("customer_name").isJsonNull())
                                         customer_name = jo.get("customer_name").getAsString();
+                                        cus_name.setText(customer_name);
                                     if (!jo.get("engineer_name").isJsonNull())
                                         engineer_name = jo.get("engineer_name").getAsString();
                                     if (!jo.get("org_name").isJsonNull())

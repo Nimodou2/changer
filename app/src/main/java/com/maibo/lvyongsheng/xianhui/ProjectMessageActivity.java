@@ -43,7 +43,7 @@ public class ProjectMessageActivity extends BaseActivity implements View.OnClick
     TextView tv_head_picture, cus_name, cus_grade, cus_files_num, tv_detal_msg, tv_baobiao, tv_power, tv_people_num, tv_percent, back, tv_order;
     LinearLayout ll_have_cards_cus;
     ImageView cus_head;
-
+    private int thistype;
     SharedPreferences sp;
     String token, apiURL;
 
@@ -108,6 +108,7 @@ public class ProjectMessageActivity extends BaseActivity implements View.OnClick
         cus_head = (ImageView) findViewById(R.id.cus_head);
         setSingleViewHeightAndWidth(cus_head, viewHeight * 30 / 255, viewHeight * 30 / 255);
         tv_order = (TextView) findViewById(R.id.tv_order);
+        tv_order.setText("");
         back = (TextView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +131,7 @@ public class ProjectMessageActivity extends BaseActivity implements View.OnClick
         Intent intent = getIntent();
         project_id = intent.getIntExtra("project_id", -1);
         project_name = intent.getStringExtra("projectName");
-
+        thistype=intent.getIntExtra("type",-1);
         if (NetWorkUtils.isNetworkConnected(this)){
             setOrderListener();
             getServiceData();
@@ -152,14 +153,18 @@ public class ProjectMessageActivity extends BaseActivity implements View.OnClick
         tv_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到订单界面
-                Intent intent = new Intent(ProjectMessageActivity.this, OrderActivity.class);
-                Bundle bundle = new Bundle();
-                intent.putExtra("projectName", project_name);
-                intent.putExtras(bundle);
-                intent.putExtra("tag", 1);
-                intent.putExtra("project_id",project_id);
-                startActivity(intent);
+                if(thistype==1){//如果是项目就return
+                        return;
+                }else {
+                    //跳转到订单界面
+                  /*  Intent intent = new Intent(ProjectMessageActivity.this, OrderActivity.class);
+                    Bundle bundle = new Bundle();
+                    intent.putExtra("projectName", project_name);
+                    intent.putExtras(bundle);
+                    intent.putExtra("tag", 1);
+                    intent.putExtra("project_id", project_id);
+                    startActivity(intent);*/
+                }
             }
         });
     }

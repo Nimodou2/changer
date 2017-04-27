@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.maibo.lvyongsheng.xianhui.App;
+import com.maibo.lvyongsheng.xianhui.OrderActivity;
 import com.maibo.lvyongsheng.xianhui.PeopleMessageActivity;
 import com.maibo.lvyongsheng.xianhui.R;
 import com.maibo.lvyongsheng.xianhui.adapter.CustomerAdapter;
@@ -145,8 +146,12 @@ public class CustomerFragment extends Fragment implements WorkRefreshListView.On
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 customer_id1 = list1.get(i - 1).getCustomer_id();
-                Intent intent = new Intent(getActivity(), PeopleMessageActivity.class);
+                /*Intent intent = new Intent(getActivity(), PeopleMessageActivity.class);
                 intent.putExtra("customer_id", customer_id1);
+                startActivity(intent);*/
+                Intent intent = new Intent(getActivity(), OrderActivity.class);
+                intent.putExtra("customer_id", customer_id1);
+                intent.putExtra("tag",3);
                 startActivity(intent);
             }
         });

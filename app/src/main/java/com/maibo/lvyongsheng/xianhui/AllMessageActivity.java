@@ -87,6 +87,7 @@ public class AllMessageActivity extends BaseActivity {
         cus_files_num = (TextView) findViewById(R.id.cus_files_num);
         lv_people_msg = (ListView) findViewById(R.id.lv_people_msg);
         tv_order = (TextView) findViewById(R.id.tv_order);
+        tv_order.setText("");
         back = (TextView) findViewById(R.id.back);
 
 
@@ -127,13 +128,13 @@ public class AllMessageActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //跳转到订单页面
-                Intent intent = new Intent(AllMessageActivity.this, OrderActivity.class);
+              /*  Intent intent = new Intent(AllMessageActivity.this, OrderActivity.class);
                 Bundle bundle = new Bundle();
                 intent.putExtra("collName", employee.getDisplay_name());
                 intent.putExtras(bundle);
                 intent.putExtra("tag", 2);
                 intent.putExtra("user_id", user_id);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
     }
